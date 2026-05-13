@@ -270,9 +270,8 @@ A: An adjacency matrix is simple to implement for a small, fixed number of nodes
 
 ## Author
 
-**Your Name**  
-B.Tech / BCA — [Your College Name]  
-Data Structures Mini Project — [Semester & Year]
+**SARVESHVAR S**  
+Data Structures Mini Project 
 
 ---
 
