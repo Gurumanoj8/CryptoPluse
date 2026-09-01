@@ -1,282 +1,586 @@
-# 💹 CryptoPulse
+# 💹 CryptoPluse
+
 ### A Data Structure Based Cryptocurrency Price Tracking and Analysis System
 
-> A terminal-based mini project written in **C**, built as part of a **Data Structures** college course.  
-> Every core feature maps directly to a data structure — making it perfect for viva explanations.
+CryptoPluse is a cryptocurrency tracking and analysis application developed in **C** with a **Windows Desktop GUI**.
+
+The project demonstrates how fundamental data structures and algorithms can be used to build a practical cryptocurrency application with features such as market tracking, coin search, watchlist management, price history, alerts, sorting, graph traversal, and portfolio management.
+
+This version converts the original terminal-based interface into a user-friendly graphical interface while maintaining the core data-structure concepts.
 
 ---
 
 ## 📋 Table of Contents
 
 - [About the Project](#about-the-project)
-- [Data Structures Used](#data-structures-used)
+- [Objectives](#objectives)
 - [Features](#features)
+- [Data Structures Used](#data-structures-used)
+- [GUI Overview](#gui-overview)
+- [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
+- [Installation](#installation)
 - [How to Run](#how-to-run)
-- [Menu Overview](#menu-overview)
-- [Sample Output](#sample-output)
 - [Project Structure](#project-structure)
-- [Viva Q&A](#viva-qa)
+- [How the Data Structures Work](#how-the-data-structures-work)
+- [Sample Market Data](#sample-market-data)
+- [Future Improvements](#future-improvements)
+- [Learning Outcomes](#learning-outcomes)
+- [Author](#author)
+- [License](#license)
 
 ---
 
-## About the Project
+## 📌 About the Project
 
-CryptoPulse is a **single-file, console-based** cryptocurrency tracker that demonstrates practical usage of 8 fundamental data structures. The project simulates a real-world crypto dashboard — with a market view, watchlist, price alerts, portfolio management, and more — all inside a clean terminal UI.
+CryptoPluse is a **Data Structures and Algorithms based cryptocurrency tracking system** developed in the C programming language.
 
-**Tech Stack:** Pure C (C99) · No external libraries · Single `.c` file
+The application provides a graphical interface for interacting with cryptocurrency market data and demonstrates the practical implementation of different data structures.
+
+The project includes:
+
+- Cryptocurrency market display
+- Cryptocurrency search
+- Watchlist management
+- Top gainers and losers
+- Price history
+- Price alerts
+- Trending cryptocurrency tracking
+- Cryptocurrency categories
+- Graph and BFS traversal
+- Portfolio management
+
+The main purpose of this project is to demonstrate how theoretical data-structure concepts can be applied to a real-world application.
 
 ---
 
-## Data Structures Used
+## 🎯 Objectives
 
-| # | Data Structure | Where It's Used |
-|---|---|---|
-| 1 | **Array** | Stores the crypto market (coin name, symbol, price, change%) |
-| 2 | **Linked List** | Watchlist management & Portfolio holdings |
-| 3 | **Stack** | Undo the last watchlist remove operation |
-| 4 | **Queue** (Circular) | Price history — stores recent price updates in FIFO order |
-| 5 | **Bubble Sort** | Ranks coins by daily % change for Top Gainers / Losers |
-| 6 | **Linear Search** | Search a coin by name or symbol |
-| 7 | **Tree** (Static) | Displays crypto categories in a visual tree structure |
-| 8 | **Graph + BFS** | Market relationships between coins; BFS traversal |
+The main objectives of CryptoPluse are:
+
+- To implement fundamental data structures in C.
+- To understand practical applications of data structures.
+- To develop a user-friendly desktop GUI.
+- To implement searching and sorting algorithms.
+- To demonstrate graph traversal using BFS.
+- To implement dynamic memory allocation.
+- To build a practical cryptocurrency analysis system.
+- To provide an easy-to-understand project for Data Structures learning and viva presentation.
 
 ---
 
-## Features
+# 🚀 Features
 
-### 1. 📊 View Crypto Market
-Displays a formatted table of all coins with live-style data.
-```
-| Coin         | Symbol | Price($)   | Change%    |
-| Bitcoin      | BTC    | 63000.00   | +2.50      |
-| Ethereum     | ETH    | 3200.00    | +1.80      |
-```
+## 1. 📊 Dashboard
 
-### 2. 🔍 Search Coin
-Search by **coin name** or **symbol** using Linear Search. Also increments the coin's search counter for trending.
+The Dashboard provides an overview of the cryptocurrency market.
 
-### 3. ⭐ Watchlist Management
-- Add / Remove coins using a **Linked List**
-- Undo the last removal with a **Stack** (push on remove, pop on undo)
+It displays:
 
-### 4. 📈 Top Gainers & Losers
-Sorts coins by daily % change using **Bubble Sort** and displays the ranked list.
+- Number of cryptocurrencies
+- Number of watchlist coins
+- Price history information
+- Top market movers
+- Data structures used in the project
 
-### 5. 🕐 Price History
-A **circular queue** stores the 10 most recent price updates (time, symbol, price). Oldest entry is overwritten when full.
+---
 
-### 6. 🔔 Price Alerts
-Set a target price for any coin. The system immediately checks if the current price has already met or crossed the target.
+## 2. 💰 Crypto Market
 
-### 7. 🔥 Trending Coins
-Counter-based tracking shows the **most searched** and **most watched** coins using `searchCount` and `watchCount` fields in the coin array.
+The Market section displays cryptocurrency information in a structured format.
 
-### 8. 🌳 Crypto Category Tree
-ASCII tree showing the category hierarchy of cryptocurrencies:
-```
+Each cryptocurrency contains:
+
+- Coin Name
+- Symbol
+- Current Price
+- 24-hour Percentage Change
+
+Example:
+
+```text
+Bitcoin      BTC       $63000.00       +2.50%
+Ethereum     ETH        $3200.00       +1.80%
+Solana       SOL         $145.00       +4.30%
+Dogecoin     DOGE          $0.15       -1.20%
+XRP          XRP           $0.58       +0.90%
+The cryptocurrency market data is stored using an Array.
+
+3. 🔍 Search Cryptocurrency
+
+The Search feature allows users to search for a cryptocurrency using:
+
+Cryptocurrency name
+Cryptocurrency symbol
+
+For example:
+
+BTC
+
+or:
+
+Bitcoin
+
+The application uses Linear Search to find the requested cryptocurrency.
+
+The search counter is also updated when a cryptocurrency is searched.
+
+Example
+Input:
+BTC
+
+Output:
+Bitcoin (BTC)
+
+Price: $63000.00
+24H Change: +2.50%
+
+Linear Search: FOUND
+4. ⭐ Watchlist Management
+
+The Watchlist allows users to keep track of selected cryptocurrencies.
+
+Users can:
+
+Add a cryptocurrency
+Remove a cryptocurrency
+Undo the last removal
+
+The Watchlist is implemented using a Linked List.
+
+The Undo functionality uses a Stack.
+
+Working
+Watchlist Linked List
+        ↓
+Coin Removed
+        ↓
+Coin pushed into Stack
+        ↓
+User selects Undo
+        ↓
+Coin popped from Stack
+        ↓
+Coin added back to Linked List
+5. 📈 Top Gainers and Losers
+
+The Gainers/Losers section ranks cryptocurrencies according to their daily percentage change.
+
+The project uses Bubble Sort for sorting the market data.
+
+Example:
+
+1. SOL       +4.30%
+2. BTC       +2.50%
+3. ETH       +1.80%
+4. XRP       +0.90%
+5. DOGE      -1.20%
+Algorithm
+
+Bubble Sort repeatedly compares adjacent elements and swaps them when they are in the wrong order.
+
+Time Complexity
+Best Case:    O(n)
+Average Case: O(n²)
+Worst Case:   O(n²)
+
+For a small cryptocurrency dataset, Bubble Sort is simple and suitable for demonstrating the algorithm.
+
+6. 🕐 Price History
+
+The Price History feature stores recent cryptocurrency price updates.
+
+A Circular Queue is used for storing the history.
+
+Each entry contains:
+
+Time
+Cryptocurrency symbol
+Price
+
+The queue stores a maximum of 10 recent entries.
+
+When the queue becomes full, the oldest entry is replaced by the newest entry.
+
+Why Circular Queue?
+
+A circular queue efficiently reuses the available memory instead of continuously allocating new memory.
+
+7. 🔔 Price Alerts
+
+The Price Alerts feature allows users to set a target price for a cryptocurrency.
+
+For example:
+
+Coin: BTC
+Target Price: $65000
+
+The application checks the current price against the target price.
+
+If the current price has reached or crossed the target, an alert message is displayed.
+
+8. 🔥 Trending Coins
+
+The Trending section keeps track of cryptocurrency activity.
+
+Two counters are maintained:
+
+searchCount
+watchCount
+
+These counters represent:
+
+Number of times a coin was searched
+Number of times a coin was added to the watchlist
+
+This helps demonstrate how additional information can be maintained alongside array-based market records.
+
+9. 🌳 Cryptocurrency Categories
+
+The Categories section demonstrates a Tree data structure.
+
+Cryptocurrencies are organized into categories such as:
+
 Cryptocurrency
-├── Layer 1 Coins  →  BTC, ETH, SOL
-├── Meme Coins     →  DOGE
-├── Payment Coins  →  XRP
-├── Stablecoins    →  USDT, USDC
-└── AI Coins       →  FET, RNDR
-```
+|
+|-- Layer 1 Coins
+|   |-- Bitcoin
+|   |-- Ethereum
+|   `-- Solana
+|
+|-- Meme Coins
+|   `-- Dogecoin
+|
+|-- Payment Coins
+|   `-- XRP
+|
+`-- AI Coins
+    |-- Fetch.ai
+    `-- Render
 
-### 9. 🕸️ Market Graph (BFS)
-Coins are nodes in a directed graph. An adjacency matrix stores edges, and **Breadth-First Search** traverses the graph starting from Bitcoin.
-```
-BTC --> ETH --> SOL --> DOGE --> XRP --> BTC
-```
+This demonstrates hierarchical organization using tree concepts.
 
-### 10. 💼 Portfolio Management
-- **Buy** a coin (stores entry as a Linked List node)
-- **Sell** a coin (removes node, calculates profit/loss vs current price)
-- **View Portfolio** with per-holding and total P&L
+10. 🕸️ Market Graph and BFS
 
----
+The Graph section demonstrates a Graph data structure.
 
-## Getting Started
+Cryptocurrencies are represented as nodes and relationships between them are represented as edges.
 
-### Prerequisites
+An Adjacency Matrix is used to represent the graph.
 
-You need a C compiler. Any of these work:
+Example:
 
-- `gcc` (Linux / macOS / WSL)
-- `MinGW` or `TDM-GCC` (Windows)
-- Any online C compiler (e.g., [onlinegdb.com](https://www.onlinegdb.com/online_c_compiler))
+BTC → ETH → SOL → DOGE → XRP → BTC
 
-### Clone the Repository
+The project uses Breadth-First Search (BFS) to traverse the graph.
 
-```bash
-git clone https://github.com/your-username/cryptopulse.git
-cd cryptopulse
-```
+BFS Traversal
 
----
+Starting from Bitcoin:
 
-## How to Run
+Bitcoin
+   ↓
+Ethereum
+   ↓
+Solana
+   ↓
+Dogecoin
+   ↓
+XRP
+Why BFS?
 
-**Linux / macOS / WSL:**
-```bash
-gcc cryptopulse.c -o cryptopulse
-./cryptopulse
-```
+BFS explores nodes level by level and uses a queue internally.
 
-**Windows (MinGW):**
-```bash
-gcc cryptopulse.c -o cryptopulse.exe
-cryptopulse.exe
-```
+11. 💼 Portfolio Management
 
-**With warnings enabled (recommended for learning):**
-```bash
-gcc -Wall -Wextra cryptopulse.c -o cryptopulse
-./cryptopulse
-```
+The Portfolio section allows users to manage cryptocurrency holdings.
 
-> No external libraries needed. Compiles with zero warnings.
+Users can:
 
----
+Buy cryptocurrency
+Sell cryptocurrency
+View holdings
+Calculate profit/loss
 
-## Menu Overview
+The portfolio is implemented using a Linked List.
 
-```
-============================================
-         CRYPTOPULSE DASHBOARD
-============================================
-   1.  View Market
-   2.  Search Coin
-   3.  Watchlist Management
-   4.  Top Gainers & Losers
-   5.  Price History
-   6.  Price Alerts
-   7.  Trending Coins
-   8.  Crypto Categories (Tree)
-   9.  Market Graph (BFS)
-   10. Portfolio Management
-   11. Exit
-============================================
-```
+Each portfolio entry stores:
 
----
+Cryptocurrency name
+Quantity
+Buy price
 
-## Sample Output
+The application calculates profit/loss using the current market price.
 
-**Market View:**
-```
-==========================================================
-                    CRYPTO MARKET
-==========================================================
-| Coin         | Symbol | Price($)   | Change%    |
-----------------------------------------------------------
-| Bitcoin      | BTC    | 63000.00   | +2.50      |
-| Ethereum     | ETH    | 3200.00    | +1.80      |
-| Solana       | SOL    | 145.00     | +4.30      |
-| Dogecoin     | DOGE   | 0.15       | -1.20      |
-| XRP          | XRP    | 0.58       | +0.90      |
-==========================================================
-```
+Profit/Loss Formula
+P&L = (Current Price - Buy Price) × Quantity
+🧠 Data Structures Used
+#	Data Structure	Application
+1	Array	Stores cryptocurrency market data
+2	Linked List	Watchlist and portfolio
+3	Stack	Undo watchlist removal
+4	Circular Queue	Recent price history
+5	Bubble Sort	Gainers and losers ranking
+6	Linear Search	Cryptocurrency search
+7	Tree	Cryptocurrency categories
+8	Graph + BFS	Market relationships and traversal
+🖥️ GUI Overview
 
-**BFS Graph Traversal:**
-```
-BTC --> ETH
-ETH --> SOL
-SOL --> DOGE
-DOGE --> XRP
-XRP --> BTC
+The application provides a Windows desktop graphical interface.
 
-BFS starting from Bitcoin:
-Bitcoin  Ethereum  Solana  Dogecoin  XRP
-```
-
-**Portfolio:**
-```
-==========================================================
-                   YOUR PORTFOLIO
-==========================================================
-| Coin         | Qty      | Buy($)   | P&L($)     |
-----------------------------------------------------------
-| Bitcoin      | 0.0500   | 60000.00 | +150.00    |
-| Solana       | 2.0000   | 130.00   | +30.00     |
-----------------------------------------------------------
-  Total P&L: +$180.00
-```
-
----
-
-## Project Structure
-
-```
-cryptopulse/
+Main Navigation
+CryptoPluse
 │
-└── cryptopulse.c        ← entire project in one file
-```
+├── Dashboard
+├── Market
+├── Search
+├── Watchlist
+├── Gainers / Losers
+├── Price History
+├── Price Alerts
+├── Trending
+├── Categories
+├── Graph + BFS
+└── Portfolio
 
-The single file is organized into clear sections:
+The GUI replaces the terminal-based menu system with buttons and dedicated application screens.
 
-```
-cryptopulse.c
+🛠️ Technologies Used
+Programming Language
+C
+GUI Framework
+Windows API (Win32)
+Compiler
+GCC / MinGW
+Development Environment
+Visual Studio Code
+Concepts
+Data Structures
+Algorithms
+Pointers
+Dynamic Memory Allocation
+Graph Traversal
+Searching
+Sorting
+GUI Programming
+💻 Getting Started
+Prerequisites
+
+Before running the project, make sure you have:
+
+Windows operating system
+Visual Studio Code
+GCC / MinGW C compiler
+Git
+
+Check whether GCC is installed:
+
+gcc --version
+
+Check Git:
+
+git --version
+📥 Installation
+
+Clone the repository:
+
+git clone https://github.com/Gurumanoj8/CryptoPluse.git
+
+Move into the project directory:
+
+cd CryptoPluse
+▶️ How to Run
+
+Compile the GUI application using GCC:
+
+gcc cryptopluse_gui.c -o CryptoPluseGUI.exe -mwindows
+
+Run the application:
+
+.\CryptoPluseGUI.exe
+
+The CryptoPluse desktop GUI will open.
+
+📁 Project Structure
+CryptoPluse/
 │
-├── Structures          (Coin, WatchNode, StackNode, HistoryEntry, PortNode)
-├── Global Data         (market array, list/stack heads, queue, graph matrix)
-├── Feature 1           viewMarket()         — Array
-├── Feature 2           searchCoin()         — Linear Search
-├── Feature 3           watchlistMenu()      — Linked List + Stack
-├── Feature 4           topGainersLosers()   — Bubble Sort
-├── Feature 5           priceHistoryMenu()   — Queue
-├── Feature 6           priceAlerts()        — Array lookup
-├── Feature 7           trendingCoins()      — Counters
-├── Feature 8           cryptoTree()         — Tree (static)
-├── Feature 9           marketGraph()        — Graph + BFS
-├── Feature 10          portfolioMenu()      — Linked List
-└── main()
-```
+├── cryptopluse_gui.c
+├── README.md
+├── LICENSE
+└── output/
+Main Source File
+cryptopluse_gui.c
 
----
+This file contains:
 
-## Viva Q&A
+GUI implementation
+Cryptocurrency market data
+Array operations
+Linked List operations
+Stack operations
+Queue operations
+Searching
+Sorting
+Tree representation
+Graph and BFS
+Portfolio management
+🔄 How the Data Structures Work
+Array
 
-**Q: Why did you use a Linked List for the watchlist instead of an array?**  
-A: A Linked List allows dynamic insertion and deletion without shifting elements, which is efficient when we don't know how many coins a user will add.
+The market array stores cryptocurrency information.
 
-**Q: How does the Stack help with the undo feature?**  
-A: When a coin is removed from the watchlist, its name is pushed onto the stack. When the user chooses "Undo", we pop from the stack and re-insert it into the linked list — following the classic LIFO principle.
+Coin
+├── Name
+├── Symbol
+├── Price
+├── Change
+├── Search Count
+└── Watch Count
+Linked List
 
-**Q: Why is the Queue circular?**  
-A: A circular queue reuses the same fixed memory. When the queue is full and a new entry arrives, it overwrites the oldest entry by advancing the `front` pointer — avoiding wasted space.
+The Watchlist is maintained using nodes.
 
-**Q: What is the time complexity of Bubble Sort?**  
-A: O(n²) in the average and worst case. For our use case with only 5 coins, this is perfectly fine and easy to understand.
+HEAD
+ ↓
+BTC → ETH → SOL → NULL
 
-**Q: How does BFS work in your graph?**  
-A: BFS uses a queue. We start from a source node (Bitcoin), mark it visited, and enqueue it. We then dequeue a node, visit all its unvisited neighbors, and enqueue them — repeating until the queue is empty.
+Linked Lists allow dynamic insertion and deletion.
 
-**Q: Why is the graph stored as an adjacency matrix?**  
-A: An adjacency matrix is simple to implement for a small, fixed number of nodes. With only 5 coins, the 5×5 matrix uses minimal memory and allows O(1) edge lookup.
+Stack
 
----
+The Stack is used for the Undo operation.
 
-## Concepts Demonstrated
+TOP
+ ↓
+DOGE
+ ↓
+ETH
+ ↓
+BTC
 
-- Dynamic memory allocation (`malloc`, `free`)
-- Pointer-based data structures
-- Modular programming with functions
-- Formatted console output (`printf` with field widths)
-- Circular indexing for queue management
-- Graph traversal (BFS)
+The last removed coin is restored first because Stack follows:
 
----
+LIFO
+Last In First Out
+Circular Queue
 
-## Author
+Price history uses a circular queue.
 
-**SARVESHVAR S**  
-Data Structures Mini Project 
+Front → [Entry] [Entry] [Entry] [Entry] ← Rear
 
----
+When the queue reaches its maximum size, the oldest entry is replaced.
 
-## License
+Bubble Sort
 
-This project is open source and available under the [MIT License](LICENSE).
+Market coins are sorted according to their percentage change.
 
-> *Built for learning. Designed for clarity.*
+Compare
+   ↓
+Swap if required
+   ↓
+Repeat
+Linear Search
+
+The Search feature checks each coin sequentially until the requested coin is found.
+
+BTC
+ ↓
+Check Bitcoin
+ ↓
+Match
+ ↓
+Return result
+Tree
+
+The Category section demonstrates hierarchical relationships.
+
+Cryptocurrency
+       |
+   Categories
+       |
+     Coins
+Graph
+
+Cryptocurrencies are represented as nodes.
+
+BTC → ETH → SOL → DOGE → XRP
+
+The relationships are stored using an adjacency matrix.
+
+BFS
+
+Breadth-First Search starts from a selected cryptocurrency and visits connected nodes level by level.
+
+BFS uses a queue internally.
+
+📊 Sample Market Data
+
+The current sample market contains:
+
+Cryptocurrency	Symbol	Price	Change
+Bitcoin	BTC	$63,000.00	+2.50%
+Ethereum	ETH	$3,200.00	+1.80%
+Solana	SOL	$145.00	+4.30%
+Dogecoin	DOGE	$0.15	-1.20%
+XRP	XRP	$0.58	+0.90%
+
+Note: The project currently uses sample market data for demonstration and educational purposes. It is not intended to represent real-time cryptocurrency prices.
+
+🎓 Learning Outcomes
+
+This project helps demonstrate practical understanding of:
+
+Arrays
+Structures
+Pointers
+Linked Lists
+Stacks
+Queues
+Circular Queues
+Searching Algorithms
+Sorting Algorithms
+Trees
+Graphs
+BFS
+Dynamic Memory Allocation
+GUI Programming
+Git and GitHub
+🔮 Future Improvements
+
+Possible future improvements include:
+
+Real-time cryptocurrency API integration
+Live cryptocurrency prices
+Interactive price charts
+More cryptocurrencies
+User authentication
+Persistent watchlists
+Persistent portfolios
+Database integration
+Advanced technical indicators
+Dark/light theme switching
+Improved graphical charts
+Mobile/web version
+🎯 Project Purpose
+
+CryptoPluse was developed as an educational Data Structures and Algorithms project.
+
+The goal is to demonstrate how different data structures and algorithms can be combined to create a practical application instead of implementing each concept independently.
+
+👨‍💻 Author
+JINKA GURUMANOJ
+Data Structures & Algorithms Project
+
+📄 License
+
+This project is distributed under the MIT License.
+
+See the LICENSE file for more information.
+
+⭐ Acknowledgement
+
+The GUI version is a modified version of the original CryptoPluse project.
+
+The modification focuses on converting the terminal-based interface into a Windows desktop GUI while retaining the educational data-structure concepts.
+
+⭐ Built with C | Data Structures | Algorithms | Win32 GUI
